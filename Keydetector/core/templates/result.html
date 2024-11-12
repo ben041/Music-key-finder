@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Analysis Results</h1>
+    
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <h2 class="text-xl font-semibold mb-2">File Information</h2>
+            <p class="text-gray-700">Filename: {{ audio_file.file.name }}</p>
+            <p class="text-gray-700">Uploaded: {{ audio_file.uploaded_at }}</p>
+        </div>
+        
+        <div class="mb-4">
+            <h2 class="text-xl font-semibold mb-2">Key Analysis</h2>
+            <p class="text-gray-700">Primary Key: {{ audio_file.key }} (Correlation: {{ audio_file.correlation|floatformat:3 }})</p>
+            {% if audio_file.alternative_key %}
+            <p class="text-gray-700">Alternative Key: {{ audio_file.alternative_key }} (Correlation: {{ audio_file.alternative_correlation|floatformat:3 }})</p>
+            {% endif %}
+        </div>
+        
+        <a href="{% url 'audio_analyzer:upload' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Analyze Another File
+        </a>
+    </div>
+</div>
+{% endblock %}
