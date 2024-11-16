@@ -1,27 +1,84 @@
 {% extends "base.html" %}
-
+{% block title %}Results{% endblock %}
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">Analysis Results</h1>
-    
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div class="mb-4">
-            <h2 class="text-xl font-semibold mb-2">File Information</h2>
-            <p class="text-gray-700">Filename: {{ audio_file.file.name }}</p>
-            <p class="text-gray-700">Uploaded: {{ audio_file.uploaded_at }}</p>
+
+<div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Featured Games Start ***** -->
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="featured-games header-text">
+              <div class="heading-section">
+                <h5>Audio File</h5>
+              </div>
+              <div class="">
+                
+                <div class="item">
+                  <div class="thumb">
+                    <!-- <img src="assets/images/featured-02.jpg" alt=""> -->
+                    <div class="hover-effect">
+                      <h6>Filename:</h6>
+                    </div>
+                  </div>
+                  <h4>
+                    <div class="audio-player">
+                        <style>
+                            .audio-player {
+                                margin-top: 20px;
+                                text-align: center;
+                            }
+                        </style>
+                        <span>
+                            <audio controls>
+                                <source src="{{ audio_file.file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </span>
+                    </div>
+                  </h4>
+                  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="top-downloaded">
+              <div class="heading-section">
+                <h4>Analysis Results</h4>
+              </div>
+              <ul>
+                <li>
+                    <h4>Filename:</h4>
+                    <h6>{{ audio_file.file.name }}</h6>
+                    
+                </li>
+                <li>
+                  <h4>Primary Key:</h4>
+                  <h6>{{ audio_file.key }} (Correlation: {{ audio_file.correlation|floatformat:3 }})</h6>
+                  
+                </li>
+                {% if audio_file.alternative_key %}
+                <li>
+                  <h4>Alternative Key</h4>
+                  <h6>{{ audio_file.alternative_key }} (Correlation: {{ audio_file.alternative_correlation|floatformat:3 }})</h6>
+                  
+                </li>
+                {% endif %}
+              </ul>
+              
+            </div>
+          </div>
         </div>
+        <!-- ***** Featured Games End ***** -->
+
         
-        <div class="mb-4">
-            <h2 class="text-xl font-semibold mb-2">Key Analysis</h2>
-            <p class="text-gray-700">Primary Key: {{ audio_file.key }} (Correlation: {{ audio_file.correlation|floatformat:3 }})</p>
-            {% if audio_file.alternative_key %}
-            <p class="text-gray-700">Alternative Key: {{ audio_file.alternative_key }} (Correlation: {{ audio_file.alternative_correlation|floatformat:3 }})</p>
-            {% endif %}
-        </div>
         
-        <a href="{% url 'audio_analyzer:upload' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Analyze Another File
-        </a>
+      </div>
     </div>
-</div>
+  </div>
+
 {% endblock %}

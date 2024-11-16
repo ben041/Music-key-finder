@@ -1,31 +1,55 @@
 {% extends "base.html" %}
-
+{% block title %}Welcome to ToneCipher{% endblock %}
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">Upload Audio File</h1>
-    
-    <form method="post" enctype="multipart/form-data" class="max-w-md">
-        {% csrf_token %}
+
+<div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="main-banner">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="header-text">
+                <h6>Welcome To <em>ToneCipher</em></h6>
+                <h5>Decoding the tone secrets of your favorite tracks.</h5><hr>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
         
-        {% if form.non_field_errors %}
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {{ form.non_field_errors }}
+                    {% if form.non_field_errors %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        {{ form.non_field_errors }}
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-4">
+                        <label for="{{ form.file.id_for_label }}">
+                            <p style="color: white;">Select audio file (MP3 or WAV):</p>
+                        </label>
+                        <br>
+                        {{ form.file }}
+                        {% if form.file.errors %}
+                        <p style="color: red;">{{ form.file.errors }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="main-button">
+                        <button class="main-button" type="submit">Upload and Analyze</button>
+                    </div>
+                </form>
+                
+              </div>
+            </div>
+          </div>
         </div>
-        {% endif %}
+        <!-- ***** Banner End ***** -->
+
         
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.file.id_for_label }}">
-                Select audio file (MP3 or WAV):
-            </label>
-            {{ form.file }}
-            {% if form.file.errors %}
-            <p class="text-red-500 text-xs italic">{{ form.file.errors }}</p>
-            {% endif %}
-        </div>
-        
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Upload and Analyze
-        </button>
-    </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+
 {% endblock %}
