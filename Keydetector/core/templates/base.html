@@ -9,7 +9,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | ToneCipher</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -54,7 +54,8 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{% url 'audio_analyzer:upload' %}" class="active">Home</a></li>
-                        <li><a href="#">Profile <img src="https://giffiles.alphacoders.com/355/35510.gif" alt=""></a></li>
+                        <li><a href="{% url 'audio_analyzer:about' %}">About</a></li>
+                        <li><a href="#"><img src="https://giffiles.alphacoders.com/355/35510.gif" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>

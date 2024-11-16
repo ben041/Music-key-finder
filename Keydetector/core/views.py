@@ -38,3 +38,7 @@ class ResultView(DetailView):
     
     def get_object(self):
         return AudioFile.objects.latest('uploaded_at')
+
+
+def about(request):
+    return render(request, 'about.html')
