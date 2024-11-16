@@ -17,7 +17,7 @@ Follow these steps to set up and run ToneCipher on your local machine.
 
 ### 1. Clone the Repository  
 ```bash  
-git clone https://github.com/your-username/ToneCipher.git  
+git clone https://github.com/ben041/Music-key-finder 
 cd ToneCipher  
 ```  
 
